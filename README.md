@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # store_record
 
 ## Project setup
@@ -22,3 +23,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# Vue-Dancing-Life-CLI4
+>>>>>>> 6a11cf2ddc59bd19497896cb10caec036088ebdc
