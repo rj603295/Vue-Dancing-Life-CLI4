@@ -250,18 +250,17 @@ export default {
       const coupon = {
         code: vm.coupon_code
       }
-      for (let i = 0; i < vm.coupons.length; i++) {
-        if (coupon.code === vm.coupons[i].code) {
-          vm.$store.dispatch('updateLoading', true)
-          vm.$http.post(url, { data: coupon }).then((response) => {
-            vm.getCart()
-            vm.$store.dispatch('updateLoading', false)
-          })
-          break
-        } else if (coupon.code !== vm.coupons[i].code) {
-          alert('您輸入的優惠碼無法使用')
-          break
-        }
+      var filterCoupon = vm.coupons.filter(function (item) {
+        return item.code === coupon.code
+      })
+      if (filterCoupon.length === 1) {
+        vm.$store.dispatch('updateLoading', true)
+        vm.$http.post(url, { data: coupon }).then((response) => {
+          vm.getCart()
+          vm.$store.dispatch('updateLoading', false)
+        })
+      } else {
+        alert('您輸入的優惠碼無法使用')
       }
     },
     alertCartEmpty () {
