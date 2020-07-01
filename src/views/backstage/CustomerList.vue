@@ -120,9 +120,7 @@ export default {
         } else {
           $('#listModal').modal('hide')
           vm.getList()
-          console.log('修改失敗')
         };
-        // vm.products = response.data.products;
       })
     },
     openModal (item) {

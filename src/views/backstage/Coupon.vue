@@ -30,7 +30,7 @@
         </tr>
       </tbody>
     </table>
-    <!-- <pagination :pages="pagination" @diffPage="getCoupons"></pagination> -->
+    <pagination :pages="pagination" @diffPage="getCoupons"></pagination>
     <!-- 新增、編輯的modal -->
       <div class="modal fade" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -101,10 +101,10 @@
 </template>
 <script>
 import $ from 'jquery'
-// import Pagination from '@/components/backstage/Pagination.vue'
+import Pagination from '@/components/backstage/Pagination.vue'
 export default {
   components: {
-    // Pagination
+    Pagination
   },
   data () {
     return {
@@ -151,7 +151,6 @@ export default {
         } else {
           $('#couponModal').modal('hide')
           vm.getCoupons()
-          console.log('新增失敗')
         };
       })
     },
@@ -169,7 +168,6 @@ export default {
         } else {
           $('#delCouponModal').modal('hide')
           vm.getCoupons()
-          console.log('刪除失敗')
         };
       })
     }

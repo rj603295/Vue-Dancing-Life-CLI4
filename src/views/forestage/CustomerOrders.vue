@@ -165,9 +165,6 @@ export default {
     isLoading () {
       return this.$store.state.isLoading
     },
-    // pagination(){
-    //   return this.$store.state.pagination;
-    // },
     ...mapGetters(['products', 'cart'])
   }
 }
