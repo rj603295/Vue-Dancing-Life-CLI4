@@ -16,7 +16,6 @@
 import Sidebar from '@/components/backstage/Sidebar.vue'
 import Navbar from '@/components/backstage/Navbar.vue'
 import Alert from '@/components/backstage/AlertMessage.vue'
-// import Pagination from '@/components/backstage/Pagination.vue'
 export default {
   components: {
     Sidebar,

@@ -211,7 +211,6 @@ export default {
         } else {
           $('#productModal').modal('hide')
           vm.getProducts()
-          console.log('新增失敗')
         };
       })
     },
@@ -230,7 +229,6 @@ export default {
         } else {
           $('#delProductModal').modal('hide')
           vm.getProducts()
-          console.log('刪除失敗')
         };
       })
     },

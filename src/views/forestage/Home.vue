@@ -89,7 +89,7 @@
         <h2 class="animated text-center py-5">每週穿搭分享</h2>
       </div>
         <div class="container">
-          <carousel class="animated" :navigationEnabled="true" :paginationEnabled="false" :scrollPerPage="false" :mouseDrag="true" :autoplay="false" :autoplayTimeout="2500" :autoplayHoverPause="false" :loop="true" :speed="3000" :adjustableHeight="false" :perPage="5" :touchDrag="true" :perPageCustom="[[300, 1], [500, 2], [767, 3], [1000, 4]]">
+          <carousel class="animated" :navigationEnabled="true" :paginationEnabled="false" :scrollPerPage="false" :mouseDrag="true" :autoplay="false" :autoplayTimeout="2500" :autoplayHoverPause="false" :loop="true" :speed="3000" :adjustableHeight="false" :perPage="5" :touchDrag="true" :perPageCustom="[[300, 1], [500, 2], [767, 3], [1000, 4]]" :navigationClickTargetSize="1">
             <slide class="slide-width">
               <div class="card card-height-90 text-center box-shadow m-2">
                 <img src="@/assets/img/outfit-1.jpg" class="card-img-top" alt="...">
@@ -235,7 +235,6 @@ export default {
       status: {
         loadingItem: ''
       }
-
     }
   },
   methods: {

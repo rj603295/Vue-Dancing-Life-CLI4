@@ -63,8 +63,6 @@ export default {
       const vm = this
       if (vm.$route.query.type !== visibility) {
         vm.$router.push({ path: '/set/shopping', query: { type: visibility } })
-      } else if (vm.$route.query.type === visibility) {
-
       }
     },
     getCategory () {
@@ -94,5 +92,4 @@ export default {
   .font-28{
     font-size: 28px;
   }
-
 </style>

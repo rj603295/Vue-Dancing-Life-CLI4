@@ -1,14 +1,32 @@
 <template>
   <div>
-    <!-- <loading :active.sync="isLoading"></loading> -->
     <loading v-if="isLoading"></loading>
     <div class="container">
       <div class="row my-5">
         <div class="col-md-7 bg-cover d-flex justify-content-center align-items-center">
-          <div>
+          <!-- 電腦版 -->
+          <div v-if="this.screenWidth > 414">
             <img class="img-fluid" :src="product.imageUrl" alt="Responsive image">
             <img class="img-fluid" :src="product.image" alt="Responsive image">
           </div>
+          <!-- 手機板 -->
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" v-if="this.screenWidth <= 414">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img :src="product.imageUrl" class="d-block w-100" alt="Responsive image">
+              </div>
+              <div class="carousel-item">
+                <img :src="product.image" class="d-block w-100" alt="Responsive image">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span><i class="fas fa-chevron-left text-dark"></i></span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span><i class="fas fa-chevron-right text-dark"></i></span>
+            </a>
+          </div>
+        <!-- 手機板結束 -->
         </div>
         <div class="col-md-5 mt-5">
           <div class="sticky">
@@ -44,8 +62,15 @@
       <div>
         <h2>猜你也會喜歡...</h2>
         <hr/>
-        <div class="row mb-5">
-          <div class="col-md-3 pointer" v-for="(item, i) in filterProducts.slice(0,4)" :key="i">
+        <div class="row mb-5" v-if="this.screenWidth > 414">
+          <div class="col-sm-3 col-6 pointer" v-for="(item, i) in filterProducts.slice(0,4)" :key="i">
+            <div class="big" @click="getProduct(item.id)">
+              <router-link :to="`${product.id}`"><img class="img-fluid" :src="item.imageUrl" alt=""></router-link>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-5" v-if="this.screenWidth <= 414">
+          <div class="col-sm-3 col-4 pointer" v-for="(item, i) in filterProducts.slice(0,3)" :key="i">
             <div class="big" @click="getProduct(item.id)">
               <router-link :to="`${product.id}`"><img class="img-fluid" :src="item.imageUrl" alt=""></router-link>
             </div>
@@ -72,8 +97,8 @@ export default {
       status: {
         loadingItem: ''
       },
-      pagination: []
-      // products: [],
+      pagination: [],
+      screenWidth: ''
     }
   },
   methods: {
@@ -91,16 +116,16 @@ export default {
     },
     addtoCart (id, qty = 1) {
       const vm = this
-      const target = this.cart.carts.filter(items => items.product_id === id)
+      const target = vm.cart.carts.filter(items => items.product_id === id)
       if (target.length > 0) {
         const sameCartItem = target[0]
         const originQty = sameCartItem.qty
         const originCartId = sameCartItem.id
         const originProductId = sameCartItem.product.id
         const newQty = originQty + qty
-        this.$store.dispatch('updateProductQty', { originCartId, originProductId, newQty })
+        vm.$store.dispatch('updateProductQty', { originCartId, originProductId, newQty })
       } else {
-        this.$store.dispatch('addtoCart', { id, qty })
+        vm.$store.dispatch('addtoCart', { id, qty })
       }
       vm.$bus.$emit('message:push', '成功加入購物車', 'warning')
     },
@@ -115,6 +140,13 @@ export default {
     this.getProduct(this.$route.params.id)
     this.getCart()
     this.getProducts()
+  },
+  mounted () {
+    const vm = this
+    vm.screenWidth = window.screen.width
+    window.onresize = () => {
+      vm.screenWidth = window.screen.width
+    }
   },
   computed: {
     filterProducts: function () {

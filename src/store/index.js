@@ -56,14 +56,12 @@ export default new Vuex.Store({
     },
     addtoCart (context, { id, qty = 1 }) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      // vm.status.loadingItem = id;
       const cart = {
         product_id: id,
         qty
       }
       context.commit('LOADING', true)
       axios.post(url, { data: cart }).then((response) => {
-        // vm.status.loadingItem = '';
         context.commit('LOADING', false)
         context.dispatch('getCart')
       })

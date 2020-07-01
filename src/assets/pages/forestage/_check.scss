@@ -21,5 +21,10 @@
   }
 }
 .input-width{
-  width: 50%;
+  width: 100%;
+}
+@media(max-width: 550px){
+  .input-width{
+    width: 80%
+  }
 }

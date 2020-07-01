@@ -12,7 +12,7 @@
           <div class="d-flex justify-content-center">
             <a href="#" class="p-2 text-dark"><i class="fab fa-facebook fa-2x"></i></a>
             <a href="#" class="p-2 text-dark"><i class="fab fa-instagram fa-2x"></i></a>
-            <a href="#" class="p-2 text-dark"><i class="fab fa-github-square fa-2x"></i></a>
+            <a href="https://github.com/rj603295/Vue-Dancing-Life-CLI4" class="p-2 text-dark"><i class="fab fa-github-square fa-2x"></i></a>
           </div>
         </div>
       </div>

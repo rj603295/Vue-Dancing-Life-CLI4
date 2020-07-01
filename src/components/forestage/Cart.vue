@@ -6,7 +6,7 @@
         <div class="rounded-circle shadow-lg bg-white">
           <i class="fa fa-shopping-cart fa-2x p-3 position-relative">
             <div class="position-absolute badge-position">
-              <h6><span class="badge badge-pill badge-danger ">{{ myCart.carts.length }}</span></h6>
+              <h6><span class="badge badge-pill badge-danger" v-if="myCart.carts.length>0">{{ myCart.carts.length }}</span></h6>
             </div>
           </i>
         </div>

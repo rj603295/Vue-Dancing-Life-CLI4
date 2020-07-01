@@ -56,7 +56,7 @@ export default {
       const vm = this
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
       vm.status.loadingItem = id
-      this.$http.get(url).then((response) => {
+      vm.$http.get(url).then((response) => {
         vm.product = response.data.product
         vm.status.loadingItem = ''
         if (event.target.tagName === 'A') {

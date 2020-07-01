@@ -29,7 +29,7 @@ Vue.component('Loading', Loading)
 Vue.filter('currency', currencyFilter)
 Vue.filter('date', dateFilter)
 axios.defaults.withCredentials = true
-/* eslint-disable no-new */
+
 const i18n = new VueI18n({
   locale: 'zhTW'
 })
