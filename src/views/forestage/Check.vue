@@ -252,8 +252,7 @@ export default {
       order: {
         user: {}
       },
-      orderId: '',
-      coupons: []
+      orderId: ''
     }
   },
   methods: {
@@ -263,34 +262,23 @@ export default {
     getCart () {
       this.$store.dispatch('getCart')
     },
-    getCoupons (page = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?page=${page}`
-      const vm = this
-      vm.$store.dispatch('updateLoading', true)
-      vm.$http.get(api).then((response) => {
-        vm.$store.dispatch('updateLoading', false)
-        vm.coupons = response.data.coupons
-        vm.pagination = response.data.pagination
-      })
-    },
     addCouponCode () {
       const vm = this
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`
       const coupon = {
         code: vm.coupon_code
       }
-      const filterCoupon = vm.coupons.filter(function (item) {
-        return item.code === coupon.code
-      })
-      if (filterCoupon.length === 1) {
+      vm.$store.dispatch('updateLoading', true)
+      vm.$http.post(url, { data: coupon }).then((response) => {
         vm.$store.dispatch('updateLoading', true)
-        vm.$http.post(url, { data: coupon }).then((response) => {
+        if (response.data.success === true) {
           vm.getCart()
           vm.$store.dispatch('updateLoading', false)
-        })
-      } else {
-        $('#couponModal').modal('show')
-      }
+        } else if (response.data.success === false) {
+          vm.$store.dispatch('updateLoading', false)
+          $('#couponModal').modal('show')
+        }
+      })
     },
     createOrder () {
       const vm = this
