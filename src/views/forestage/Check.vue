@@ -332,7 +332,6 @@ export default {
   },
   created () {
     this.getCart()
-    this.getCoupons()
   },
   watch: {
     cart () {
