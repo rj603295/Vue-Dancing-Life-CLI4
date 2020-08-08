@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <Cart :my-cart="cart" @delCart="removeCartItem" v-if="cart.carts"></Cart>
+    <Cart v-if="cart.carts"></Cart>
   </div>
 </template>
 <script>
@@ -68,9 +68,6 @@ export default {
     },
     getCart () {
       this.$store.dispatch('getCart')
-    },
-    removeCartItem (id) {
-      this.$store.dispatch('removeCartItem', id)
     },
     addtoCart (id, qty = 1) {
       const vm = this

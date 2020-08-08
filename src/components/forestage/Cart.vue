@@ -6,7 +6,7 @@
         <div class="rounded-circle shadow-lg bg-white">
           <i class="fa fa-shopping-cart fa-2x p-3 position-relative">
             <div class="position-absolute badge-position">
-              <h6><span class="badge badge-pill badge-danger" v-if="myCart.carts.length>0">{{ myCart.carts.length }}</span></h6>
+              <h6><span class="badge badge-pill badge-danger" v-if="cart.carts.length>0">{{ cart.carts.length }}</span></h6>
             </div>
           </i>
         </div>
@@ -15,11 +15,11 @@
         <div class="px-3 py-3">
           <h6 class="mb-2 text-center font-weight-bold">已選擇商品</h6>
           <div class="d-flex align-items-center justify-content-center">
-            <p class="m-0" v-if="myCart.carts.length === 0">還沒有商品！</p>
+            <p class="m-0" v-if="cart.carts.length === 0">還沒有商品！</p>
           </div>
           <div class="table-responsive">
             <table class="table table-sm">
-              <tbody v-for="item in myCart.carts" :key="item.product.product_id">
+              <tbody v-for="item in cart.carts" :key="item.product.product_id">
                 <tr>
                   <td class="align-middle" width="5%">
                     <a href="#" class="text-secondary" @click="removeCartItem(item.id)"><i class="fas fa-trash"></i></a>
@@ -33,17 +33,17 @@
               </tbody>
             </table>
           </div>
-          <router-link v-if="myCart.carts.length !== 0" to="/set/check" class="btn btn-border btn-block">結帳去</router-link>
-          <router-link v-if="myCart.carts.length == 0" to="/set/shopping" class="btn btn-border btn-block">購物去</router-link>
+          <router-link v-if="cart.carts.length !== 0" to="/set/check" class="btn btn-border btn-block">結帳去</router-link>
+          <router-link v-if="cart.carts.length == 0" to="/set/shopping" class="btn btn-border btn-block">購物去</router-link>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Cart',
-  props: ['myCart'],
   data () {
     return {
       isLoading: false
@@ -51,9 +51,11 @@ export default {
   },
   methods: {
     removeCartItem (id) {
-      const vm = this
-      vm.$emit('delCart', id)
+      this.$store.dispatch('removeCartItem', id)
     }
+  },
+  computed: {
+    ...mapGetters(['cart'])
   }
 }
 </script>

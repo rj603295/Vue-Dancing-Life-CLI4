@@ -78,7 +78,7 @@
         </div>
       </div>
     </div>
-    <Cart :my-cart="cart" @delCart="removeCartItem" v-if="cart.carts"></Cart>
+    <Cart v-if="cart.carts"></Cart>
   </div>
 </template>
 <script>
