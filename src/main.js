@@ -17,6 +17,7 @@ import './bus'
 import currencyFilter from './filters/currency'
 import dateFilter from './filters/date'
 import store from './store'
+import VueRouter from 'vue-router'
 
 Vue.use(VueAxios, axios)
 Vue.use(Vuex)
@@ -66,3 +67,8 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
