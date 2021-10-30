@@ -42,3 +42,10 @@
 ![image](https://github.com/rj603295/imgRepo/blob/master/Dancing_Life_Img/coupon.PNG?raw=true)
 ![image](https://github.com/rj603295/imgRepo/blob/master/Dancing_Life_Img/editOrder.PNG?raw=true)
 
+## 使用技術
+- Vue
+- Vuex
+- Vue Router
+- axios 串接 API
+- SCSS
+- 支援RWD
